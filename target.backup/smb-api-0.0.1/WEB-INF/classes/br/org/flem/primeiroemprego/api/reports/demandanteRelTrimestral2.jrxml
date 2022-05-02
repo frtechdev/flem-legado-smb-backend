@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Demandante Rel trimestral" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="53be8c3a-b087-4943-ac6a-74f42e351049">
+	<property name="ireport.zoom" value="1.652892561983471"/>
+	<property name="ireport.x" value="458"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<style name="table">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#D3D3D3">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="LOGO_FLEM" class="java.io.InputStream"/>
+	<parameter name="LOGO_GOV" class="java.io.InputStream"/>
+	<parameter name="LOGO_PRIM_EMPREGO" class="java.io.InputStream"/>
+	<parameter name="DEMANDANTE" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\tscortes\\Documents\\NetBeansProjects\\primeiroempregoapi\\src\\main\\resources\\br\\org\\flem\\primeiroemprego\\api\\reports\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select top 1  mun.nome demandante from Registro_Monitoramento rm
+	inner join Municipio mun on (rm.id_municipio = mun.id_municipio)
+	where rm.data_Monitoramento BETWEEN '2019-09-01 00:00:00.0000000' AND '2019-11-30 23:59:59.0000000'
+	order by mun.nome]]>
+	</queryString>
+	<title>
+		<band height="83" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="144" height="48" uuid="a0bbb497-9342-47c7-9fd1-34d1d0ac31d6"/>
+				<imageExpression><![CDATA[$P{LOGO_FLEM}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="448" y="0" width="107" height="82" uuid="0a6003e9-a610-46cb-9bb7-b88b49e10b0e"/>
+				<imageExpression><![CDATA[$P{LOGO_GOV}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="149" splitType="Stretch">
+			<staticText>
+				<reportElement key="lb_monitoramento" x="0" y="0" width="555" height="85" uuid="5adba33c-0c5a-4319-815e-c04c93f5edb1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="32" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MONITORAMENTO - SUBMETA 4.2]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="85" width="555" height="64" uuid="c02751ae-21a3-43dc-ab14-e0d477d61d7b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="30" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DEMANDANTE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<lastPageFooter>
+		<band height="14">
+			<textField>
+				<reportElement x="400" y="0" width="100" height="14" uuid="51a75ddd-a974-4865-b104-a04c82e08531"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["${CURRENT_PAGE_NUMBER}"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="500" y="0" width="55" height="14" uuid="877b378c-49df-4e4f-8ea0-bc234fb66a70"/>
+				<textFieldExpression><![CDATA["${TOTAL_PAGE_NUMBER}"]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="0" width="83" height="14" uuid="0a3d6f50-1351-4a24-9a49-d23d10319537"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH.mm">
+				<reportElement x="83" y="0" width="123" height="14" uuid="fa492e40-ac65-48c7-82ee-d15eca1077f9"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+</jasperReport>

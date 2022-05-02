@@ -1,0 +1,13 @@
+upload:
+    path:
+        avaliacoes: smb/avaliacoes/
+        comprovacoes: smb/comprovacoes/
+        monitores:    uploads/smb/monitores/
+spring:
+    profiles:
+       active: prod
+      # active: dev
+    http:
+        multipart:
+            max-file-size: 10MB
+            max-request-size: 10MB

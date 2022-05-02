@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subQuestionarioRelTrimestral" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2d0a9d2f-298c-4cbc-805d-53045451f467">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<subDataset name="respostasDataSet" uuid="e1c8b04e-f998-45eb-960c-382ca4db0224">
+		<field name="descricao" class="java.lang.String"/>
+		<field name="respondida" class="java.lang.Boolean"/>
+	</subDataset>
+	<field name="ordem" class="java.lang.Integer"/>
+	<field name="descricao" class="java.lang.String"/>
+	<field name="respostas" class="java.util.List"/>
+	<detail>
+		<band height="65" splitType="Prevent">
+			<textField>
+				<reportElement x="1" y="11" width="47" height="20" uuid="43f4c991-4267-43dd-9e57-e1ec6339fcc9"/>
+				<textElement markup="html">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ordem}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="47" y="11" width="507" height="20" isPrintWhenDetailOverflows="true" uuid="7102a029-70f7-460e-80f9-a47c14fc697b"/>
+				<textElement markup="html">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="1" y="39" width="554" height="25" uuid="f0cdcd23-6564-44d0-bf4e-e747dfe7bf72"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="respostasDataSet" uuid="afdb14cb-8f4b-4cc9-a860-a00cb0228a10">
+						<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{respostas})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="25" width="554">
+						<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+							<reportElement positionType="Float" x="67" y="3" width="477" height="19" isPrintWhenDetailOverflows="true" uuid="31f09c4e-f7f3-4d16-adf9-cabc3b9753c2"/>
+							<box topPadding="2" leftPadding="2"/>
+							<textElement verticalAlignment="Middle" markup="html">
+								<font size="8" pdfFontName="Helvetica"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+						</textField>
+						<ellipse>
+							<reportElement x="47" y="7" width="10" height="10" uuid="ff581c35-c309-45ff-bc44-537f3a17de22">
+								<printWhenExpression><![CDATA[$F{respondida}.toString().equals("false")]]></printWhenExpression>
+							</reportElement>
+						</ellipse>
+						<ellipse>
+							<reportElement x="47" y="7" width="10" height="10" backcolor="#000000" uuid="4121ddfe-ce5e-4a79-a106-858e73eb12e6">
+								<printWhenExpression><![CDATA[$F{respondida}.toString().equals("true")]]></printWhenExpression>
+							</reportElement>
+						</ellipse>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

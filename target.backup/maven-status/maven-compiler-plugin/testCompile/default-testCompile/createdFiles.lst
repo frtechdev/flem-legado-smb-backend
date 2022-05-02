@@ -1,0 +1,9 @@
+br\org\flem\primeiroemprego\api\primeiroEmpregoAPI\test\BeneficiarioTest.class
+br\org\flem\primeiroemprego\api\primeiroEmpregoAPI\test\ColaboradorTest.class
+br\org\flem\primeiroemprego\api\primeiroEmpregoAPI\test\DemandanteTest.class
+br\org\flem\primeiroemprego\api\primeiroEmpregoAPI\test\SenderTest.class
+br\org\flem\primeiroemprego\api\primeiroEmpregoAPI\test\MonitorDemandanteTest.class
+br\org\flem\primeiroemprego\api\primeiroEmpregoAPI\test\ComprovacaoTest.class
+br\org\flem\primeiroemprego\api\primeiroEmpregoAPI\test\MunicipioTest.class
+br\org\flem\primeiroemprego\api\primeiroEmpregoAPI\test\EscritorioRegionalTest.class
+br\org\flem\primeiroemprego\api\primeiroEmpregoAPI\test\RegistroMonitoramentoTest.class

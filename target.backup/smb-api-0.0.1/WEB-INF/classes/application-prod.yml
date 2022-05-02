@@ -1,0 +1,65 @@
+mailing:
+    server: 
+        url: http://seeapi.flem.org.br/
+    path:
+        send-email: emails/sendEmails
+file:
+    server: 
+        url: http://arquivosapi.baixio.flem.org.br/files/?path=
+        
+spring:
+    application:
+      name: smb-api
+    jmx:
+      default-domain: smb-api
+    jpa:
+      database-platform: org.hibernate.dialect.SQLServer2008Dialect
+      generate-ddl: true
+      hibernate:
+        ddl-auto: update
+        naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
+      show-sql: false
+    datasource:
+        url: jdbc:sqlserver://trancoso;databaseName=BD_PRIMEIROEMPREGO
+        driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+        username: user_primeiroemprego
+        password: s%79a$2!r
+        
+    activemq:
+        user: admin
+        password: admin
+        broker-url: tcp://caboto.flem.org.br:61616?jms.redeliveryPolicy.maximumRedeliveries=1
+       # broker-url: tcp://localhost:61616?jms.redeliveryPolicy.maximumRedeliveries=1
+        
+integracao:
+    jpa:
+        database-platform: org.hibernate.dialect.SQLServer2008Dialect
+        generate-ddl: false
+        hibernate:
+            ddl-auto: none
+        show-sql: true
+    datasource:
+        url: jdbc:sqlserver://trancoso;databaseName=bd_integracao
+        driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+        username: desenvolvimento
+        password: ntoflem 
+      
+eureka:
+    instance:
+        hostname: registry.flem.org.br
+    client:
+        registerWithEureka: true
+        fetchRegistry: false
+        serviceUrl:
+            defaultZone: http://${eureka.instance.hostname}/eureka
+        healthcheck:
+            enabled: true
+    server:
+        wait-time-in-ms-when-sync-empty: 3000
+        
+authserver:
+    hostname: http://authapi.flem.org.br
+security:
+    oauth2:
+      resource:
+        userInfoUri: ${authserver.hostname}/user

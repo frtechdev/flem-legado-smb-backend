@@ -1,0 +1,122 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "br.org.flem",
+    "module": "flem-util",
+    "version": "1.0.2",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "flem-util-1.0.2.jar",
+          "url": "flem-util-1.0.2.jar",
+          "size": 21282,
+          "sha512": "e4f6553239f5f332079dd6c8bf01334e3211cd60cb0483bdb8c5cf9a9937a5dcef8bffa90d0f53f3b968b1c42b3b28d538ed070b1d3520191463db9fe4f58cec",
+          "sha256": "3f68678a403b40ab714f4e083ea0e752884baf185f23121e5449854575e8c775",
+          "sha1": "ca0cef4989e6c8069ada40abfef8e7d72798eb59",
+          "md5": "3ed0ff1cfd491e965cdedb985e8cf2e5"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-starter-web",
+          "version": {
+            "requires": "1.5.9.RELEASE"
+          }
+        },
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot",
+          "version": {
+            "requires": "1.5.9.RELEASE"
+          }
+        },
+        {
+          "group": "org.springframework.boot",
+          "module": "spring-boot-starter",
+          "version": {
+            "requires": "1.5.9.RELEASE"
+          }
+        },
+        {
+          "group": "commons-validator",
+          "module": "commons-validator",
+          "version": {
+            "requires": "1.3.1"
+          }
+        },
+        {
+          "group": null,
+          "module": "olap4j-0.9.7.309-JS-3"
+        },
+        {
+          "group": "net.sf.jasperreports",
+          "module": "jasperreports",
+          "version": {
+            "requires": "5.5.2"
+          }
+        },
+        {
+          "group": "org.apache.pdfbox",
+          "module": "pdfbox",
+          "version": {
+            "requires": "2.0.16"
+          }
+        },
+        {
+          "group": "com.lowagie",
+          "module": "itext",
+          "version": {
+            "requires": "2.1.7"
+          }
+        },
+        {
+          "group": "commons-io",
+          "module": "commons-io",
+          "version": {
+            "requires": "2.5"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "flem-util-1.0.2.jar",
+          "url": "flem-util-1.0.2.jar",
+          "size": 21282,
+          "sha512": "e4f6553239f5f332079dd6c8bf01334e3211cd60cb0483bdb8c5cf9a9937a5dcef8bffa90d0f53f3b968b1c42b3b28d538ed070b1d3520191463db9fe4f58cec",
+          "sha256": "3f68678a403b40ab714f4e083ea0e752884baf185f23121e5449854575e8c775",
+          "sha1": "ca0cef4989e6c8069ada40abfef8e7d72798eb59",
+          "md5": "3ed0ff1cfd491e965cdedb985e8cf2e5"
+        }
+      ]
+    }
+  ]
+}

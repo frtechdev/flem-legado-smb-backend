@@ -1,0 +1,62 @@
+mailing:
+    server: 
+        url: http://mailingapi.boaviagem.flem.org.br/
+    path:
+        send-email: emails/sendEmails
+        
+file:
+    server: 
+        url: http://arquivosapi.boaviagem.flem.org.br/files/?path=
+spring:
+    application:
+      name: smb-service
+    jmx:
+      default-domain: smb-service
+    jpa:
+      database-platform: org.hibernate.dialect.SQLServer2008Dialect
+      generate-ddl: true
+      hibernate:
+        ddl-auto: update
+        naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
+      show-sql: false
+    datasource:
+      url: jdbc:sqlserver://trancoso;databaseName=BD_PRIMEIROEMPREGO_TEST
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      username: desenvolvimento
+      password: ntoflem
+      
+    activemq:
+        user: admin
+        password: admin
+        broker-url: tcp://localhost:61616?jms.redeliveryPolicy.maximumRedeliveries=1
+      
+integracao:
+    jpa:
+        database-platform: org.hibernate.dialect.SQLServer2008Dialect
+        generate-ddl: false
+        hibernate:
+            ddl-auto: none
+        show-sql: true
+    datasource:
+        url: jdbc:sqlserver://trancoso;databaseName=bd_integracao
+        driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+        username: desenvolvimento
+        password: ntoflem 
+      
+eureka:
+    instance:
+        hostname: eureka.boaviagem.flem.org.br
+    client:
+        registerWithEureka: true
+        fetchRegistry: false
+        serviceUrl:
+            defaultZone: http://${eureka.instance.hostname}/eureka
+    server:
+        wait-time-in-ms-when-sync-empty: 3000
+        
+authserver:
+    hostname: http://authapi.boaviagem.flem.org.br
+security:
+    oauth2:
+      resource:
+        userInfoUri: ${authserver.hostname}/user

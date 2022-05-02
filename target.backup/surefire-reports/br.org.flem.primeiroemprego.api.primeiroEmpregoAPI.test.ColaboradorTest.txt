@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: br.org.flem.primeiroemprego.api.primeiroEmpregoAPI.test.ColaboradorTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.83 sec - in br.org.flem.primeiroemprego.api.primeiroEmpregoAPI.test.ColaboradorTest

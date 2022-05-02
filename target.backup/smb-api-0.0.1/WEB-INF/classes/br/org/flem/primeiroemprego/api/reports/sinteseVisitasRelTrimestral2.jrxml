@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Sintese de Visitas" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="53be8c3a-b087-4943-ac6a-74f42e351049">
+	<property name="ireport.zoom" value="6.265872254123566"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="612"/>
+	<style name="table">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#D3D3D3">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="LOGO_FLEM" class="java.io.InputStream"/>
+	<parameter name="LOGO_GOV" class="java.io.InputStream"/>
+	<parameter name="LOGO_PRIM_EMPREGO" class="java.io.InputStream"/>
+	<parameter name="START_DATE" class="java.lang.String"/>
+	<parameter name="END_DATE" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select eg.cpf as cpfEgresso, rm.data_Monitoramento as dataMonitoramento,
+	dem.nome as demandante, rm.id as id, eg.id_egresso as idEgresso, eg.matriculaFlem as matriculaEgresso, rm.usuario_criacao as monitor
+	, mun.nome as municipio
+	, eg.nome as nomeEgresso, rm.unidade_Lotacao as unidadeDeLotacao
+    from Registro_Monitoramento rm
+	inner join Municipio mun on (rm.id_municipio = mun.id_municipio)
+	inner join Egresso eg on (eg.id_egresso = rm.id_beneficiario)
+	inner join Demandante dem on (dem.id_demandante = rm.id_demandante)
+	where rm.data_Monitoramento BETWEEN '2019-09-01 00:00:00.0000000' AND '2019-09-10 23:59:59.0000000'
+	order by mun.nome]]>
+	</queryString>
+	<field name="nomeEgresso" class="java.lang.String"/>
+	<field name="cpfEgresso" class="java.lang.String"/>
+	<field name="matriculaEgresso" class="java.lang.String"/>
+	<field name="municipio" class="java.lang.String"/>
+	<field name="dataVisita" class="java.lang.String"/>
+	<field name="demandante" class="java.lang.String"/>
+	<field name="unidadeDeLotacao" class="java.lang.String"/>
+	<field name="avaliacoes" class="java.lang.String"/>
+	<field name="monitor" class="java.lang.String"/>
+	<field name="siglaDemandante" class="java.lang.String"/>
+	<field name="dataAdmissao" class="java.lang.String"/>
+	<variable name="LINE_COUNT" class="java.math.BigDecimal" calculation="Count">
+		<variableExpression><![CDATA[$V{LINE_COUNT}.add(new BigDecimal(1))]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<title>
+		<band height="83" splitType="Stretch">
+			<image isUsingCache="true">
+				<reportElement x="0" y="0" width="144" height="48" uuid="a0bbb497-9342-47c7-9fd1-34d1d0ac31d6"/>
+				<imageExpression><![CDATA[$P{LOGO_FLEM}]]></imageExpression>
+			</image>
+			<image isUsingCache="true">
+				<reportElement x="695" y="0" width="107" height="82" uuid="0a6003e9-a610-46cb-9bb7-b88b49e10b0e"/>
+				<imageExpression><![CDATA[$P{LOGO_GOV}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="60" splitType="Prevent">
+			<staticText>
+				<reportElement x="0" y="0" width="802" height="26" uuid="3b0ee31a-3b06-4fb2-bb0d-822ac11bc9c8"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SERVIÇO DE APOIO À PRIMEIRA EXPERIÊNCIA PROFISSIONAL DO EGRESSO DO ENSINO TÉCNICO DA REDE ESTADUAL DE EDUCAÇÃO PROFISSIONAL NO ÂMBITO DO PROGRAMA PRIMEIRO EMPREGO]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="46" width="802" height="14" uuid="d215b3a7-3ab9-450a-b6ce-8db54fe457a4"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="20" y="46" width="43" height="14" uuid="1eb5d46f-c56b-4d77-b423-3610c06f662a"/>
+				<box leftPadding="2">
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MAT.FLEM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="46" width="126" height="14" uuid="bdd84564-af52-4188-b471-5417cb352a42"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOME]]></text>
+			</staticText>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="63" y="46" width="1" height="14" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="c70e521d-7896-4d43-9f0c-b853c77a3a63"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="256" y="46" width="1" height="14" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="5ab600a5-e534-4c39-a37d-93ae8558aecf"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="331" y="46" width="1" height="14" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="49edb8d3-1360-4937-a769-d28de7743e7f"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="512" y="46" width="1" height="14" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="18a14f1a-99e2-49f3-b8ca-a88a9469368a"/>
+			</line>
+			<staticText>
+				<reportElement x="257" y="46" width="74" height="14" uuid="544ca292-9e12-4ec1-b393-2f951529fef5"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="513" y="46" width="70" height="14" uuid="ab6adcb9-91d0-4e0e-900e-8b02e4136784"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA DA VISITA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="583" y="46" width="61" height="14" uuid="93b9f3d8-4895-483e-be32-fec58c2bdf67"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MUNICIPIO]]></text>
+			</staticText>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="582" y="46" width="1" height="14" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="8d0e54f3-b138-4372-b4de-bb352f2523ba"/>
+			</line>
+			<staticText>
+				<reportElement x="645" y="46" width="73" height="14" uuid="efcfe53e-3598-430c-8593-5b3f13f16654"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MONITOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="718" y="46" width="83" height="14" uuid="3ea43b21-1c70-4380-b7a6-297a4a5210f4"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AVALIAÇÕES]]></text>
+			</staticText>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="644" y="46" width="1" height="14" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="0f226a08-54aa-422a-b14c-cff7fb5e6426"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="717" y="46" width="1" height="14" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="63d3f899-a685-4540-b090-ebd6fcb2a5f3"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="26" width="802" height="20" uuid="03bbf46b-d297-4e4c-a544-df9d8cf7bce9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["SINTESE DE VISITAS DE MONITORAMENTO E AVALIAÇÕES - QUANTO ÀS FUNÇÕES DESENVOLVIDAS: " + $P{START_DATE} +" À "+ $P{END_DATE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="332" y="46" width="74" height="14" uuid="33451b81-21a4-46ea-ace5-7b08524d79f9"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DEMANDANTE]]></text>
+			</staticText>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="406" y="46" width="1" height="14" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="cf53fd34-248e-4856-bb7a-aeb5224e16c5"/>
+			</line>
+			<staticText>
+				<reportElement x="407" y="46" width="105" height="14" uuid="1fd371af-20ba-43fa-ba0b-93960407c832"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIDADE DE LOTAÇÃO]]></text>
+			</staticText>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="130" y="46" width="1" height="14" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="96ab676c-cbce-4c15-973d-fde953411ec9"/>
+			</line>
+			<staticText>
+				<reportElement x="64" y="46" width="66" height="14" uuid="b71ccdd6-8df8-484e-817e-51d8a1f5d164"/>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ ADMISSÃO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="47" width="19" height="13" uuid="c0f5adcd-4919-4c65-91e2-0c3a886e7e81"/>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QTD]]></text>
+			</staticText>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="19" y="46" width="1" height="14" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="790cd350-7000-43a9-a428-fbcbe77b5583"/>
+			</line>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="15" splitType="Prevent">
+			<textField>
+				<reportElement x="20" y="0" width="43" height="15" isPrintWhenDetailOverflows="true" uuid="e7240302-d6f0-4653-9040-4f04324cd84d"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{matriculaEgresso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="0" width="126" height="15" isPrintWhenDetailOverflows="true" uuid="948fea4b-333b-4f35-a49e-c6172ea85590"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomeEgresso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="257" y="0" width="74" height="15" isPrintWhenDetailOverflows="true" uuid="3284dfde-4097-420a-b89d-7230af2190ec"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cpfEgresso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="513" y="0" width="70" height="15" isPrintWhenDetailOverflows="true" uuid="007b3056-0564-400b-8bb4-6057311ad666"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dataVisita}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="583" y="0" width="61" height="15" isPrintWhenDetailOverflows="true" uuid="699b3cde-3dd6-41b3-a0b8-afa11ac99c75"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{municipio}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="644" y="0" width="73" height="15" isPrintWhenDetailOverflows="true" uuid="d3a5a001-788a-4165-9eea-fc4bffc085b6"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{monitor}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="718" y="0" width="83" height="15" isPrintWhenDetailOverflows="true" uuid="6ffb4bc9-9810-430e-9668-729183f90c3a"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{avaliacoes}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="644" y="0" width="1" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="921c435e-0672-4b9a-971f-5a7807216191"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="256" y="0" width="1" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="f2a2782b-94ff-4068-83e2-71fa433ff3f0"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="63" y="0" width="1" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="8bc553db-0e03-4c00-882f-7a87fcff04e8"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="6dfaded6-f383-46cd-b1e6-697203d96ec3"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="801" y="0" width="1" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="a2a1fbeb-9384-4fa3-996d-fa1ffb9168ff"/>
+			</line>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="14" width="802" height="1" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="1b567e62-e95d-48f6-b8c9-1f0713b667af"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="331" y="0" width="1" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="84b9636d-d70a-41ce-8ffa-d11bdf9405ff"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="512" y="0" width="1" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="26b8d4b9-3b29-4345-ae4f-3e3ca1b173a7"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="582" y="0" width="1" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="827a1a8c-b219-4f9c-bf15-2f452bad87ba"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="717" y="0" width="1" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="87776798-3e91-4465-b63c-cbb108334e82"/>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="332" y="0" width="74" height="15" isPrintWhenDetailOverflows="true" uuid="94a46bd4-4a1a-4563-b41c-d0f33a31dec7"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{siglaDemandante}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="406" y="0" width="1" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="c9d985b6-241e-4b04-adf4-16325e1bdbfb"/>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="407" y="0" width="105" height="15" isPrintWhenDetailOverflows="true" uuid="f7058713-8ef1-4fbf-9edb-0aa7a292b7a0"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{unidadeDeLotacao}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="130" y="0" width="1" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="c05819be-85aa-4e90-884d-d39c0bbe7c4a"/>
+			</line>
+			<textField>
+				<reportElement x="66" y="0" width="64" height="15" uuid="1ac81796-9916-4fcd-9f71-df1739200835"/>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dataAdmissao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="0" width="18" height="15" uuid="28ce1ce5-c5aa-4bbd-8999-c0116075c02a"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{LINE_COUNT}.toString()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="19" y="0" width="1" height="14" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="7273970b-fae6-4148-b2da-b50a7f529355"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="652" y="0" width="88" height="23" uuid="a67cc6a6-42f2-41bf-b8e2-4dee23694cdc"/>
+				<box topPadding="2"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["${CURRENT_PAGE_NUMBER}"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="760" y="0" width="42" height="23" uuid="def62901-12f6-4dee-9795-5185522f03c9"/>
+				<box topPadding="2"/>
+				<textFieldExpression><![CDATA["${TOTAL_PAGE_NUMBER}"]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy HH:mm">
+				<reportElement x="519" y="0" width="133" height="23" uuid="85f4c566-da78-493a-a564-c6e86a4b2018"/>
+				<box topPadding="2"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

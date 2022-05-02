@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Rota de Monitoramento" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="53be8c3a-b087-4943-ac6a-74f42e351049">
+	<property name="ireport.zoom" value="1.1566298682885952"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#D3D3D3">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="34b25144-6ecd-4ce0-86d4-018bd146e7d9"/>
+	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="LOGO_GOV" class="java.lang.String"/>
+	<parameter name="LOGO_PRIM_EMPREGO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select distinct mun.nome municipio from Registro_Monitoramento rm
+	inner join Municipio mun on (rm.id_municipio = mun.id_municipio)
+	where rm.data_Monitoramento BETWEEN '2019-09-01 00:00:00.0000000' AND '2019-11-30 23:59:59.0000000'
+	order by mun.nome]]>
+	</queryString>
+	<field name="municipio" class="java.lang.String"/>
+	<title>
+		<band height="83" splitType="Stretch">
+			<image isUsingCache="true">
+				<reportElement x="0" y="0" width="144" height="48" uuid="a0bbb497-9342-47c7-9fd1-34d1d0ac31d6"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<image isUsingCache="true">
+				<reportElement x="448" y="0" width="107" height="82" uuid="0a6003e9-a610-46cb-9bb7-b88b49e10b0e"/>
+				<imageExpression><![CDATA[$P{LOGO_PRIM_EMPREGO}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="34" splitType="Prevent">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="34" uuid="3b0ee31a-3b06-4fb2-bb0d-822ac11bc9c8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rota de Monitoramento]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="555" height="17" uuid="7a903c21-a51f-4032-966d-f581c253c002"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{municipio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="425" y="3" width="88" height="20" uuid="a67cc6a6-42f2-41bf-b8e2-4dee23694cdc"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página: "+$V{PAGE_NUMBER}+" / "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="513" y="3" width="42" height="20" uuid="def62901-12f6-4dee-9795-5185522f03c9"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy HH:mm">
+				<reportElement x="292" y="3" width="133" height="20" uuid="85f4c566-da78-493a-a564-c6e86a4b2018"/>
+				<box rightPadding="10"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

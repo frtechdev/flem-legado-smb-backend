@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: br.org.flem.primeiroemprego.api.primeiroEmpregoAPI.test.BeneficiarioTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 51.768 sec - in br.org.flem.primeiroemprego.api.primeiroEmpregoAPI.test.BeneficiarioTest
